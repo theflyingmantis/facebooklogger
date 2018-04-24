@@ -40,6 +40,9 @@ def messaging_events(payload):
 @app.route('/api/<service>',methods = ['GET','POST'])
 def loggine_api(service):
   sender_id = os.environ['SENDER_ID']
+  secret = os.environ['SECRET']
+  if request.args.get('secret') != secret:
+    return "incorrect secret. Send the secret as GET parameter.\nHint: what do you want?"
   if request.method == 'GET':
     result = {
       'GET_PARAMS': request.args,
