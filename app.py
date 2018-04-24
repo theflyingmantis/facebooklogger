@@ -2,9 +2,11 @@
 import random
 from flask import Flask, request
 from pymessenger.bot import Bot
+import os
+import json
  
 app = Flask(__name__)
-ACCESS_TOKEN = 'EAACa17UYmdQBAGZBewFJQADXQTGgxk2EGd1FTVZCSylGECE3HW95AZAHvKaeMaktwy22lVJKdL3pAlpPuwVZBDreokDiN5UwWcYSHy8gklTZBdyUZBtD3oH3PMbFY4B82aBQ5eHld9aE6LFir51wHLKJZB2CTmcymk5MPYjNT2DhgZDZD'
+ACCESS_TOKEN = os.environ['PAGE_ACCESS_TOKEN']
 VERIFY_TOKEN = 'VERIFY_TOKEN'
 bot = Bot(ACCESS_TOKEN)
  
@@ -42,7 +44,31 @@ def verify_fb_token(token_sent):
     if token_sent == VERIFY_TOKEN:
         return request.args.get("hub.challenge")
     return 'Invalid verification token'
- 
+
+
+@app.route('/api/<service>',methods = ['GET','POST'])
+def loggine_api(service):
+  sender_id = os.environ['SENDER_ID']
+  if request.method == 'GET':
+    result = {
+      'GET_PARAMS': request.args,
+      'REQUEST_TYPE': 'GET',
+      'SERVICE': service
+    }
+    send_message(sender_id,json.dumps(result,indent=4))
+    return json.dumps(result,indent=4)
+  if request.method == 'POST':
+    result = {
+      'RAW_DATA': request.get_data(),
+      'REQUEST_TYPE': 'POST',
+      'GET_PARAMS': request.args,
+      'FORM_DATA': request.form,
+      'SERVICE': service
+    }
+    send_message(sender_id,json.dumps(result,indent=4))
+    return json.dumps(result,indent=4)
+
+
  
 #chooses a random message to send to the user
 def get_message():
