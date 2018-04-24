@@ -2,6 +2,7 @@ from flask import Flask, request
 import json
 import requests
 import os
+import json
 
 app = Flask(__name__)
 
@@ -27,7 +28,6 @@ def handle_messages():
   for sender, message in messaging_events(payload):
     print ("Incoming from %s: %s" % (sender, message))
     send_message(PAT, sender, message)
-  print (sender)
   return "ok"
 
 def messaging_events(payload):
@@ -41,6 +41,28 @@ def messaging_events(payload):
       yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
     else:
       yield event["sender"]["id"], "I can't echo this"
+
+@app.route('/api/<service>',methods = ['GET','POST'])
+def loggine_api(service):
+  sender_id = os.environ['SENDER_ID']
+  if request.method == 'GET':
+    result = {
+      'GET_PARAMS': request.args,
+      'REQUEST_TYPE': 'GET',
+      'SERVICE': service
+    }
+    send_message(PAT,sender_id,json.dumps(result,indent=4))
+    return json.dumps(result,indent=4)
+  if request.method == 'POST':
+    result = {
+      'RAW_DATA': request.get_data(),
+      'REQUEST_TYPE': 'POST',
+      'GET_PARAMS': request.args,
+      'FORM_DATA': request.form,
+      'SERVICE': service
+    }
+    send_message(PAT,sender_id,json.dumps(result,indent=4))
+    return json.dumps(result,indent=4)
 
 
 def send_message(token, recipient, text):
