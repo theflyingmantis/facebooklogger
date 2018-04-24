@@ -55,7 +55,7 @@ def loggine_api(service):
       'REQUEST_TYPE': 'GET',
       'SERVICE': service
     }
-    send_message(sender_id,json.dumps(result,indent=4))
+    send_message(sender_id,str(json.dumps(result,indent=4)))
     return json.dumps(result,indent=4)
   if request.method == 'POST':
     result = {
@@ -65,7 +65,7 @@ def loggine_api(service):
       'FORM_DATA': request.form,
       'SERVICE': service
     }
-    send_message(sender_id,json.dumps(result,indent=4))
+    send_message(sender_id,str(json.dumps(result,indent=4)))
     return json.dumps(result,indent=4)
 
 
