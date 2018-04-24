@@ -45,7 +45,7 @@ def loggine_api(service):
       'REQUEST_TYPE': 'GET',
       'SERVICE': service
     }
-    send_message(PAT,sender_id,json.dumps(result.decode("utf-8"),indent=4))
+    send_message(PAT,sender_id,json.dumps(result,indent=4))
     return json.dumps(result,indent=4)
   if request.method == 'POST':
     result = {
@@ -55,7 +55,7 @@ def loggine_api(service):
       'FORM_DATA': request.form,
       'SERVICE': service
     }
-    send_message(PAT,sender_id,json.dumps(result.decode("utf-8"),indent=4))
+    send_message(PAT,sender_id,json.dumps(result,indent=4))
     return json.dumps(result,indent=4)
 
 
@@ -67,7 +67,7 @@ def send_message(token, recipient, text):
     params={"access_token": token},
     data=json.dumps({
       "recipient": {"id": recipient},
-      "message": {"text": text}
+      "message": {"text": text.encode().decode()}
     }),
     headers={'Content-type': 'application/json'})
   if r.status_code != requests.codes.ok:
