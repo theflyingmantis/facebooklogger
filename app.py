@@ -58,15 +58,15 @@ def loggine_api(service):
     }
     print (result)
     print ('\n\n')
-    print (json.dumps(result,indent=2))
-    send_message(PAT,sender_id,result)
+    print (json.dumps(result,indent=4))
+    send_message(PAT,sender_id,json.dumps(result,indent=4))
     return json.dumps(result,indent=4)
 
 
 def send_message(token, recipient, text):
   """Send the message text to recipient with id recipient.
   """
-  # text = text.replace("\"","'")
+  text = text.replace('\\"','"')
   r = requests.post("https://graph.facebook.com/v2.6/me/messages",
     params={"access_token": token},
     data=json.dumps({
