@@ -6,10 +6,7 @@ import json
 
 app = Flask(__name__)
 
-# This needs to be filled with the Page Access Token that will be provided
-# by the Facebook App that will be created.
 PAT = os.environ["PAGE_ACCESS_TOKEN"]
-from pymessenger.bot import Bot
 
 @app.route('/', methods=['GET'])
 def handle_verification():
@@ -45,7 +42,7 @@ def loggine_api(service):
     return "incorrect secret. Send the secret as GET parameter.\nHint: what do you want?"
   if request.method == 'GET':
     result = {
-      'GET_PARAMS': request.args,
+      'GET_PARAMS': json.dumps(request.args,indent=4),
       'REQUEST_TYPE': 'GET',
       'SERVICE': service
     }
@@ -53,10 +50,10 @@ def loggine_api(service):
     return json.dumps(result,indent=4)
   if request.method == 'POST':
     result = {
-      'RAW_DATA': request.get_data(),
+      'RAW_DATA': json.dumps(request.get_data(),indent=4),
       'REQUEST_TYPE': 'POST',
-      'GET_PARAMS': request.args,
-      'FORM_DATA': request.form,
+      'GET_PARAMS': json.dumps(request.args,indent=4),
+      'FORM_DATA': json.dumps(request.form,indent=4),
       'SERVICE': service
     }
     send_message(PAT,sender_id,json.dumps(result,indent=4))
