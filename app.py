@@ -26,7 +26,7 @@ def handle_messages():
   msgType = Helper().get_message_type(payload)
   if not msgType:
     send_message(PAT, Helper().get_sender_id(payload), "I did not get what you said :(")
-  if msgType == "getting_started":
+  if msgType == "get_started":
     first_time_message(payload)
   if msgType == "message":
     for sender, message in messaging_events(payload):
@@ -37,9 +37,10 @@ def handle_messages():
 class Helper:
   def get_message_type(self,payload):
     data = json.loads(payload)
-    if "postback" in data["entry"][0]["messaging"][0]:
-      return "getting_started"
-    elif "message" in data["entry"][0]["messaging"][0]:
+    messaging_events = data["entry"][0]["messaging"][0]
+    if "postback" in messaging_events and messaging_events['postback']['payload']=="get_started":
+      return "get_started"
+    elif "message" in messaging_events:
       return "message"
     else:
       return None
