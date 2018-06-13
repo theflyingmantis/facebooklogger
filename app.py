@@ -26,7 +26,7 @@ def handle_messages():
   msgType = Helper().get_message_type(payload)
   if not msgType:
     send_message(PAT, Helper().get_sender_id(payload), "I did not get what you said :(")
-  if msgType == "postback":
+  if msgType == "getting_started":
     first_time_message(payload)
   if msgType == "message":
     for sender, message in messaging_events(payload):
