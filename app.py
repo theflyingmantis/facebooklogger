@@ -23,10 +23,34 @@ def handle_messages():
   print ("Handling Messages")
   payload = request.get_data()
   print (payload)
-  for sender, message in messaging_events(payload):
-    print ("Incoming from %s: %s" % (sender, message))
-    send_message(PAT, sender, message)
+  msgType = Helper().get_message_type(payload)
+  if not msgType:
+    send_message(PAT, Helper().get_sender_id(payload), "I did not get what you said :(")
+  if msgType == "postback":
+    first_time_message(payload)
+  if msgType == "message":
+    for sender, message in messaging_events(payload):
+      print ("Incoming from %s: %s" % (sender, message))
+      send_message(PAT, sender, message)
   return "ok"
+
+class Helper:
+  def get_message_type(self,payload):
+    data = json.loads(payload)
+    if "postback" in data["entry"][0]["messaging"]:
+      return "getting_started"
+    elif "message" in data["entry"][0]["messaging"]:
+      return "message"
+    else:
+      return None
+
+  def get_sender_id(self,payload):
+    data = json.loads(payload)
+    messaging_events = data["entry"][0]["messaging"]
+    return messaging_events["sender"]["id"]
+
+def first_time_message(payload):
+  send_message(PAT, Helper.get_sender_id(payload), "First Time message")
 
 def messaging_events(payload):
   """Generate tuples of (sender_id, message_text) from the
