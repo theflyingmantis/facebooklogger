@@ -37,16 +37,16 @@ def handle_messages():
 class Helper:
   def get_message_type(self,payload):
     data = json.loads(payload)
-    if "postback" in data["entry"][0]["messaging"]:
+    if "postback" in data["entry"][0]["messaging"][0]:
       return "getting_started"
-    elif "message" in data["entry"][0]["messaging"]:
+    elif "message" in data["entry"][0]["messaging"][0]:
       return "message"
     else:
       return None
 
   def get_sender_id(self,payload):
     data = json.loads(payload)
-    messaging_events = data["entry"][0]["messaging"]
+    messaging_events = data["entry"][0]["messaging"][0]
     return messaging_events["sender"]["id"]
 
 def first_time_message(payload):
