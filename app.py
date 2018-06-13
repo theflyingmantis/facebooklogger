@@ -10,7 +10,13 @@ PAT = os.environ["PAGE_ACCESS_TOKEN"]
 
 @app.route('/', methods=['GET'])
 def handle_verification():
-    return '<h1>Welcome to the fb chat bot testing service of Abhinav Rai</h1>'
+  print "Handling Verification."
+  if request.args.get('hub.verify_token', '') == 'my_voice_is_my_password_verify_me':
+    print ("Verification successful!")
+    return request.args.get('hub.challenge', '')
+  else:
+    print ("Verification failed!")
+    return 'Error, wrong validation token'
 
 @app.route('/', methods=['POST'])
 def handle_messages():
@@ -76,6 +82,11 @@ def send_message(token, recipient, text):
     headers={'Content-type': 'application/json'})
   if r.status_code != requests.codes.ok:
     print (r.text)
+
+
+@app.route('database',methods = ['GET','POST'])
+def database():
+    print ('database')
 
 if __name__ == '__main__':
   app.run()
