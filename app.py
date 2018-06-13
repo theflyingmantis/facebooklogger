@@ -50,7 +50,7 @@ class Helper:
     return messaging_events["sender"]["id"]
 
 def first_time_message(payload):
-  send_message(PAT, Helper.get_sender_id(payload), "First Time message")
+  send_message(PAT, Helper().get_sender_id(payload), "First Time message")
 
 def messaging_events(payload):
   """Generate tuples of (sender_id, message_text) from the
