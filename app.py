@@ -84,9 +84,9 @@ def send_message(token, recipient, text):
     print (r.text)
 
 
-@app.route('database',methods = ['GET','POST'])
-def database():
-    print ('database')
+# @app.route('database',methods = ['GET','POST'])
+# def database():
+#     print ('database')
 
 if __name__ == '__main__':
   app.run()
