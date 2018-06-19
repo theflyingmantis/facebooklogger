@@ -3,7 +3,7 @@ import json
 import requests
 import os
 from flask_sqlalchemy import SQLAlchemy
-import random
+import random, string
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
