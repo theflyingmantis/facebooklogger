@@ -2,8 +2,8 @@ from flask import Flask, request
 import json
 import requests
 import os
-import json
 from flask_sqlalchemy import SQLAlchemy
+import random
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
