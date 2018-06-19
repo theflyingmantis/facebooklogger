@@ -45,7 +45,7 @@ def handle_messages():
     if not Models().check_sender_id_in_db(senderId):
       return first_time_message(senderId)
     userId = Models().get_userId(senderId)
-    send_message(PAT, sender_id, Helper().compose_msg(userId))
+    send_message(PAT, senderId, Helper().compose_msg(userId))
   return "ok"
 
 class Helper:
@@ -111,9 +111,9 @@ def first_time_message(senderId):
     Models().add_sender_id_in_db(senderId)
   try:
     userId = Models().get_userId(senderId)
-    send_message(PAT, sender_id, Helper().compose_msg(userId))
+    send_message(PAT, senderId, Helper().compose_msg(userId))
   except Exception as e:
-    send_message(PAT,sender_id, "Something Wrong happened!")
+    send_message(PAT,senderId, "Something Wrong happened!")
 
 def messaging_events(payload):
   """Generate tuples of (sender_id, message_text) from the
@@ -138,7 +138,7 @@ def loggine_api(userId):
       'REQUEST_TYPE': 'GET',
       'SERVICE': service
     }
-    send_message(PAT,sender_id,json.dumps(result,indent=4))
+    send_message(PAT,senderId,json.dumps(result,indent=4))
     return json.dumps(result,indent=4)
   if request.method == 'POST':
     result = {
@@ -148,7 +148,7 @@ def loggine_api(userId):
       'FORM_DATA': request.form,
       'SERVICE': service
     }
-    send_message(PAT,sender_id,json.dumps(result,indent=4))
+    send_message(PAT,senderId,json.dumps(result,indent=4))
     return json.dumps(result,indent=4)
 
 
