@@ -136,7 +136,6 @@ def loggine_api(userId):
     result = {
       'GET_PARAMS': request.args,
       'REQUEST_TYPE': 'GET',
-      'SERVICE': service
     }
     send_message(PAT,senderId,json.dumps(result,indent=4))
     return json.dumps(result,indent=4)
@@ -146,7 +145,6 @@ def loggine_api(userId):
       'REQUEST_TYPE': 'POST',
       'GET_PARAMS': request.args,
       'FORM_DATA': request.form,
-      'SERVICE': service
     }
     send_message(PAT,senderId,json.dumps(result,indent=4))
     return json.dumps(result,indent=4)
