@@ -43,7 +43,7 @@ def handle_messages():
   if msgType == "message":
     senderId = Helper().get_sender_id(payload)
     if not Models().check_sender_id_in_db(senderId):
-      return first_time_message(payload)
+      return first_time_message(senderId)
     userId = Models().get_userId(senderId)
     send_message(PAT, sender_id, Helper().compose_msg(userId))
   return "ok"
