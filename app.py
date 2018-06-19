@@ -81,6 +81,7 @@ class Models:
     userId = Helper().get_random_string(16)
     if self.check_userId(userId):
       return self.add_sender_id_in_db(senderId)
+    print userId, senderId
     Obj = User(senderId=senderId,userId=userId)
     db.session.add(Obj)
     db.session.commit()
