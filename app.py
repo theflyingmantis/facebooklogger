@@ -68,7 +68,7 @@ class Helper:
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
 
   def compose_msg(self,userId):
-    return "You url is https://something.com/"+str(userId)+"\nYour UserId is "+userId
+    return "You url is https://facebooklogger.herokuapp.com/api/"+str(userId)+"\nYour UserId is "+userId
 
 class Models:
   def check_sender_id_in_db(self, senderId):
