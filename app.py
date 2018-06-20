@@ -39,15 +39,62 @@ def handle_messages():
   if not msgType:
     Message().send_message(PAT, Helper().get_sender_id(payload), "I did not get what you said :(")
   if msgType == "get_started":
-    return first_time_message(senderId)
+    return Command().first_time_message(senderId)
+  if msgType == "change_userId":
+    return Command().change_userId(senderId)
   if msgType == "message":
     senderId = Helper().get_sender_id(payload)
     if not Models().check_sender_id_in_db(senderId):
-      return first_time_message(senderId)
+      return Command().first_time_message(senderId)
     userId = Models().get_userId(senderId)
-    Message().send_link_msg(senderId,userId)
-    Message().send_id_msg(senderId,userId)
+    Message().send_standard(senderId,userId)
   return "ok"
+
+@app.route('/api/<userId>',methods = ['GET','POST'])
+def loggine_api(userId):
+  if not Models().check_userId(userId):
+    return render_template('404.html'), 404
+  senderId = Models().get_senderId(userId)
+  if request.method == 'GET':
+    result = {
+      'GET_PARAMS': request.args,
+      'REQUEST_TYPE': 'GET',
+    }
+    Message().send_message(PAT,senderId,json.dumps(result,indent=4))
+    Message().send_button_change_userId(PAT,senderId)
+    return render_template('show_data.html', data=result)
+
+  if request.method == 'POST':
+    result = {
+      'RAW_DATA': request.get_data(),
+      'REQUEST_TYPE': 'POST',
+      'GET_PARAMS': request.args,
+      'FORM_DATA': request.form,
+    }
+    Message().send_message(PAT,senderId,json.dumps(result,indent=4))
+    return render_template('show_data.html', data=result)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
+
+class Command:
+  def first_time_message(self, senderId):
+    if not Models().check_sender_id_in_db(senderId):
+      Models().add_sender_id_in_db(senderId)
+    try:
+      userId = Models().get_userId(senderId)
+      Message().send_standard(senderId,userId)
+    except Exception as e:
+      Message().send_message(PAT,senderId, "Something Wrong happened!")
+
+  def change_userId(self, senderId):
+    newUserId = Helper().get_random_string(10)
+    while Models().check_userId(newUserId):
+      newUserId = Helper().get_random_string(10)
+    Models().update_userId(senderId, newUserId)
+    Message().send_standard(senderId,newUserId)
+
 
 class Helper:
   def get_message_type(self,payload):
@@ -57,6 +104,8 @@ class Helper:
       return "get_started"
     elif "message" in messaging_events:
       return "message"
+    if "postback" in messaging_events and messaging_events['postback']['payload']=="CHANGE_USERID":
+      return "change_userid"
     else:
       return None
 
@@ -68,17 +117,13 @@ class Helper:
   def get_random_string(self,length):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
 
-  
-
-  def compose_msg(self,userId):
-    return "You url is https://facebooklogger.herokuapp.com/api/"+str(userId)+"\nYour UserId is "+userId
 
 class Message:
   def send_link_msg(self,senderId, userId):
-    self.send_message(PAT, senderId, "You url is https://facebooklogger.herokuapp.com/api/"+str(userId))
+    self.send_message(PAT, senderId, "You url is:\nhttps://facebooklogger.herokuapp.com/api/"+str(userId))
 
   def send_id_msg(self,senderId, userId):
-    self.send_message(PAT, senderId, "Unique Token is: "+str(userId))
+    self.send_message(PAT, senderId, "Unique Token is:\n"+str(userId))
 
   def send_message(self,token,recipient,text):
     text = text.replace('\\"','"')
@@ -92,6 +137,35 @@ class Message:
     if r.status_code != requests.codes.ok:
       print (r.text)
 
+  def send_button_change_userId(self,token,recipient):
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+      params={"access_token": token},
+      data=json.dumps({
+        "recipient": {"id": recipient},
+        "message":{
+          "attachment":{
+            "type":"template",
+            "payload":{
+              "template_type":"button",
+              "text":"Change link and user Id",
+              "buttons":[
+                {
+                  "type":"postback",
+                  "title":"Change",
+                  "payload":"CHANGE_USERID"
+                }
+              ]
+            }
+          }
+        }
+      }),
+      headers={'Content-type': 'application/json'})
+
+  def send_standard(self,senderId, userId):
+    self.send_link_msg(senderId, userId)
+    self.send_id_msg(senderId, userId)
+    self.send_button_change_userId(PAT,senderId)
+    
 
 class Models:
   def check_sender_id_in_db(self, senderId):
@@ -101,7 +175,7 @@ class Models:
     return False
 
   def add_sender_id_in_db(self, senderId):
-    userId = Helper().get_random_string(16)
+    userId = Helper().get_random_string(10)
     if self.check_userId(userId):
       return self.add_sender_id_in_db(senderId)
     print userId, senderId
@@ -127,45 +201,12 @@ class Models:
       raise Exception('senderId for '+userId+' does not exist in db')
     return Obj.senderId
 
+  def update_userId(self,senderId,newUserId):
+    Obj = User.query.filter_by(senderId=senderId).first()
+    Obj.userId = newUserId
+    db.session.commit()
 
 
-def first_time_message(senderId):
-  if not Models().check_sender_id_in_db(senderId):
-    Models().add_sender_id_in_db(senderId)
-  try:
-    userId = Models().get_userId(senderId)
-    Message().send_link_msg(senderId, userId)
-    Message().send_id_msg(senderId,UserId)
-  except Exception as e:
-    Message().send_message(PAT,senderId, "Something Wrong happened!")
-
-
-@app.route('/api/<userId>',methods = ['GET','POST'])
-def loggine_api(userId):
-  if not Models().check_userId(userId):
-    return render_template('404.html'), 404
-  senderId = Models().get_senderId(userId)
-  if request.method == 'GET':
-    result = {
-      'GET_PARAMS': request.args,
-      'REQUEST_TYPE': 'GET',
-    }
-    Message().send_message(PAT,senderId,json.dumps(result,indent=4))
-    return render_template('show_data.html', data=result)
-
-  if request.method == 'POST':
-    result = {
-      'RAW_DATA': request.get_data(),
-      'REQUEST_TYPE': 'POST',
-      'GET_PARAMS': request.args,
-      'FORM_DATA': request.form,
-    }
-    Message().send_message(PAT,senderId,json.dumps(result,indent=4))
-    return render_template('show_data.html', data=result)
-
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('404.html'), 404
 
 
 
