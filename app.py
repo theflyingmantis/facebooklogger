@@ -105,7 +105,7 @@ class Helper:
     elif "message" in messaging_events:
       return "message"
     if "postback" in messaging_events and messaging_events['postback']['payload']=="CHANGE_USERID":
-      return "change_userid"
+      return "change_userId"
     else:
       return None
 
