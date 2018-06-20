@@ -43,11 +43,7 @@ def handle_messages():
   if msgType == "change_userId":
     return Command().change_userId(senderId)
   if msgType == "message":
-    senderId = Helper().get_sender_id(payload)
-    if not Models().check_sender_id_in_db(senderId):
-      return Command().first_time_message(senderId)
-    userId = Models().get_userId(senderId)
-    Message().send_standard(senderId,userId)
+    return Command().reply_to_message(senderId)
   return "ok"
 
 @app.route('/api/<userId>',methods = ['GET','POST'])
@@ -87,6 +83,7 @@ class Command:
       Message().send_standard(senderId,userId)
     except Exception as e:
       Message().send_message(PAT,senderId, "Something Wrong happened!")
+    return "ok"
 
   def change_userId(self, senderId):
     newUserId = Helper().get_random_string(10)
@@ -94,6 +91,14 @@ class Command:
       newUserId = Helper().get_random_string(10)
     Models().update_userId(senderId, newUserId)
     Message().send_standard(senderId,newUserId)
+    return "ok"
+
+  def reply_to_message(self, senderId):
+    if not Models().check_sender_id_in_db(senderId):
+      return self.first_time_message(senderId)
+    userId = Models().get_userId(senderId)
+    Message().send_standard(senderId,userId)
+    return "ok"
 
 
 class Helper:
