@@ -57,7 +57,6 @@ def loggine_api(userId):
       'REQUEST_TYPE': 'GET',
     }
     Message().send_message(PAT,senderId,json.dumps(result,indent=4))
-    Message().send_button_change_userId(PAT,senderId)
     return render_template('show_data.html', data=result)
 
   if request.method == 'POST':
