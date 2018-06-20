@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Your Data</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='404.css')}}">
+</head>
+<body>
+<br><br>
+<center>
+<h2>
+<table border=1>
+	<tr>
+		<td>Request Type</td>
+		<td>{{data.REQUEST_TYPE}}</td>
+	</tr>
+	<tr>
+		<td>GET params</td>
+		<td>{{data.GET_PARAMS}}</td>
+	</tr>
+	<tr>
+		<td>Raw Data</td>
+		<td>{{data.RAW_DATA}}</td>
+	</tr>
+	<tr>
+		<td>Form Data</td>
+		<td>{{data.FORM_DATA}}</td>
+	</tr>
+</table>
+</h2>
+</center>
+</body>
+</html>

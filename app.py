@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import json
 import requests
 import os
@@ -37,7 +37,7 @@ def handle_messages():
   senderId = Helper().get_sender_id(payload)
   msgType = Helper().get_message_type(payload)
   if not msgType:
-    send_message(PAT, Helper().get_sender_id(payload), "I did not get what you said :(")
+    Message().send_message(PAT, Helper().get_sender_id(payload), "I did not get what you said :(")
   if msgType == "get_started":
     return first_time_message(senderId)
   if msgType == "message":
@@ -45,7 +45,8 @@ def handle_messages():
     if not Models().check_sender_id_in_db(senderId):
       return first_time_message(senderId)
     userId = Models().get_userId(senderId)
-    send_message(PAT, senderId, Helper().compose_msg(userId))
+    Message().send_link_msg(senderId,userId)
+    Message().send_id_msg(senderId,userId)
   return "ok"
 
 class Helper:
@@ -67,8 +68,32 @@ class Helper:
   def get_random_string(self,length):
     return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(length))
 
+  
+
   def compose_msg(self,userId):
     return "You url is https://facebooklogger.herokuapp.com/api/"+str(userId)+"\nYour UserId is "+userId
+
+class Message:
+  def send_link_msg(self,senderId, userId):
+    self.send_message(PAT, senderId, "You url is https://facebooklogger.herokuapp.com/api/"+str(userId))
+
+  def send_id_msg(self,senderId, userId):
+    self.send_message(PAT, senderId, "Unique Token is: "+str(userId))
+
+  def send_message(self,token,recipient,text):
+    """Send the message text to recipient with id recipient.
+  """
+  text = text.replace('\\"','"')
+  r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+    params={"access_token": token},
+    data=json.dumps({
+      "recipient": {"id": recipient},
+      "message": {"text": text}
+    }),
+    headers={'Content-type': 'application/json'})
+  if r.status_code != requests.codes.ok:
+    print (r.text)
+
 
 class Models:
   def check_sender_id_in_db(self, senderId):
@@ -111,34 +136,25 @@ def first_time_message(senderId):
     Models().add_sender_id_in_db(senderId)
   try:
     userId = Models().get_userId(senderId)
-    send_message(PAT, senderId, Helper().compose_msg(userId))
+    Message().send_link_msg(senderId, userId)
+    Message().send_id_msg(senderId,UserId)
   except Exception as e:
-    send_message(PAT,senderId, "Something Wrong happened!")
+    Message().send_message(PAT,senderId, "Something Wrong happened!")
 
-def messaging_events(payload):
-  """Generate tuples of (sender_id, message_text) from the
-  provided payload.
-  """
-  data = json.loads(payload)
-  messaging_events = data["entry"][0]["messaging"]
-  for event in messaging_events:
-    if "message" in event and "text" in event["message"]:
-      yield event["sender"]["id"], event["message"]["text"].encode('unicode_escape')
-    else:
-      yield event["sender"]["id"], "I can't echo this"
 
 @app.route('/api/<userId>',methods = ['GET','POST'])
 def loggine_api(userId):
   if not Models().check_userId(userId):
-    return "Fake Request!"
+    return render_template('404.html'), 404
   senderId = Models().get_senderId(userId)
   if request.method == 'GET':
     result = {
       'GET_PARAMS': request.args,
       'REQUEST_TYPE': 'GET',
     }
-    send_message(PAT,senderId,json.dumps(result,indent=4))
-    return json.dumps(result,indent=4)
+    Message().send_message(PAT,senderId,json.dumps(result,indent=4))
+    return render_template('show_data.html', data=result)
+
   if request.method == 'POST':
     result = {
       'RAW_DATA': request.get_data(),
@@ -146,23 +162,14 @@ def loggine_api(userId):
       'GET_PARAMS': request.args,
       'FORM_DATA': request.form,
     }
-    send_message(PAT,senderId,json.dumps(result,indent=4))
-    return json.dumps(result,indent=4)
+    Message().send_message(PAT,senderId,json.dumps(result,indent=4))
+    return render_template('show_data.html', data=result)
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
-def send_message(token, recipient, text):
-  """Send the message text to recipient with id recipient.
-  """
-  text = text.replace('\\"','"')
-  r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-    params={"access_token": token},
-    data=json.dumps({
-      "recipient": {"id": recipient},
-      "message": {"text": text}
-    }),
-    headers={'Content-type': 'application/json'})
-  if r.status_code != requests.codes.ok:
-    print (r.text)
 
 
 if __name__ == '__main__':
