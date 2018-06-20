@@ -81,18 +81,16 @@ class Message:
     self.send_message(PAT, senderId, "Unique Token is: "+str(userId))
 
   def send_message(self,token,recipient,text):
-    """Send the message text to recipient with id recipient.
-  """
-  text = text.replace('\\"','"')
-  r = requests.post("https://graph.facebook.com/v2.6/me/messages",
-    params={"access_token": token},
-    data=json.dumps({
-      "recipient": {"id": recipient},
-      "message": {"text": text}
-    }),
-    headers={'Content-type': 'application/json'})
-  if r.status_code != requests.codes.ok:
-    print (r.text)
+    text = text.replace('\\"','"')
+    r = requests.post("https://graph.facebook.com/v2.6/me/messages",
+      params={"access_token": token},
+      data=json.dumps({
+        "recipient": {"id": recipient},
+        "message": {"text": text}
+      }),
+      headers={'Content-type': 'application/json'})
+    if r.status_code != requests.codes.ok:
+      print (r.text)
 
 
 class Models:
