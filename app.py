@@ -76,7 +76,7 @@ def logging_module(service,userId):
   senderId = Models().get_senderId(userId)
   logging_data = ""
   if service != "NO1":
-    logging_data+=service+'\n\n'
+    logging_data+=service+'\n'
   data = request.form
   if not request.form:
     data = request.get_data()
@@ -90,6 +90,7 @@ def logging_module(service,userId):
       'GET_PARAMS': request.args,
       'FORM_DATA': request.form,
     }
+  print result
   return render_template('show_data.html', data=result)
 
 
