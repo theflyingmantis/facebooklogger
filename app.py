@@ -28,7 +28,7 @@ def handle_verification():
     return request.args.get('hub.challenge', '')
   else:
     print ("Verification failed!")
-    return 'Error, wrong validation token'
+    return render_template('index.html')
 
 @app.route('/', methods=['POST'])
 def handle_messages():
@@ -68,6 +68,10 @@ def loggine_api(userId):
     }
     Message().send_message(PAT,senderId,json.dumps(result,indent=4))
     return render_template('show_data.html', data=result)
+
+@app.route('/privacy_policy',methods=['GET'])
+def privacy_policy():
+  return render_template('privacy_policy.html')
 
 @app.errorhandler(404)
 def page_not_found(e):

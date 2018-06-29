@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Blimp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="{{url_for('static',filename='blimp.ico')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='anoceanofsky.css')}}"/>
+<title>Blimp</title>
+</head>
+
+<body>
+    <div id="page">
+        <div class="topNaviagationLink"><a href="/">Home</a></div>
+        <div class="topNaviagationLink"><a href="/privacy_policy">Privacy Policy</a></div>
+	</div>
+    <div id="mainPicture">
+    	<div class="picture">
+        	<div id="headerTitle">Blimp</div>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+        <div id="footer"><a href="http://www.aszx.net">web development</a> by <a href="http://www.bryantsmith.com">bryant smith</a></div>
+
+</body>
+</html>
