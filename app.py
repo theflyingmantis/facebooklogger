@@ -69,6 +69,31 @@ def loggine_api(userId):
     Message().send_message(PAT,senderId,json.dumps(result,indent=4))
     return render_template('show_data.html', data=result)
 
+@app.route('/logging/<service>/<userId>',methods = ['GET','POST'])
+def logging_module(service,userId):
+  if not Models().check_userId(userId):
+    return render_template('404.html'), 404
+  senderId = Models().get_senderId(userId)
+  logging_data = ""
+  if service != "NO1":
+    logging_data+=service+'\n\n'
+  data = request.form
+  if not request.form:
+    data = request.get_data()
+  if type(data) != str:
+    data = json.dumps(data,indent=4)
+  logging_data+=data
+  Message().send_message(PAT,senderId,logging_data)
+  result = {
+      'RAW_DATA': request.get_data(),
+      'REQUEST_TYPE': 'POST',
+      'GET_PARAMS': request.args,
+      'FORM_DATA': request.form,
+    }
+  return render_template('show_data.html', data=result)
+
+
+
 @app.route('/privacy_policy',methods=['GET'])
 def privacy_policy():
   return render_template('privacy_policy.html')
@@ -220,4 +245,4 @@ class Models:
 
 
 if __name__ == '__main__':
-  app.run()
+  app.run(debug=True)
