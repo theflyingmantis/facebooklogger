@@ -99,6 +99,11 @@ def logging_module(service,userId):
 def privacy_policy():
   return render_template('privacy_policy.html')
 
+@app.route('/module/<language>', methods=['GET'])
+def module(language):
+  if language == "python":
+    return render_template('pip_viablimp.html')
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404

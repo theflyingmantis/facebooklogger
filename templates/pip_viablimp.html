@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="contentBox">
+        <div class="innerBox">
+            <div class="contentTitle">Python package <strong>viablimp</strong></div>
+      		<div class="contentText"><br />
+      			<h2>Installation</h2>
+      			<textarea rows="1" cols="80" disabled="true">
+>>> pip install viablimp
+      			</textarea><br><br>
+      			<h2>Functions</h2>
+      			<ul>
+      			<li><code>logs = viablimp.token('TOKEN')</code></li>
+      			This returns a <u>viablimp object</u>. The <strong>TOKEN</strong> should be obtained from facebook chatbot.
+      			<li><code>logs.message(MESSAGE)</code></li>
+      			This returns response status code. 200 for OK. 404 for not found. See response status codes for more info.<br>
+      			If the token is incorrect or in case of no network, it raises error.<br>
+      			Here MESSAGE can be anything to log. String, array, dictionary, etc.
+      			<li><code>logs.add_name('SERVICE_NAME')</code></li>
+      			Returns True. All log messages sent by calling from the viablimp object now will have the SERVICE_NAME as their heading as illustrated below.
+      			</ul>
+      			<br>
+      			<h2>Usage</h2>
+      			<textarea rows="20" cols="80" disabled="true">
+>>> import viablimp
+>>> logger = viablimp.token('BGSFH3HJ7I') 
+>>> logger.message([1,2,3,4])
+>>> logger.message('Test-123')
+>>> logger.message([
+		{
+			"color": "red",
+			"value": "#f00"
+		},
+		{
+			"color": "green",
+			"value": "#0f0"
+		},
+		{
+			"color": "blue",
+			"value": "#00f"
+		},
+		{
+			"color": "cyan",
+			"value": "#0ff"
+		},
+		{
+			"color": "magenta",
+			"value": "#f0f"
+		},
+		{
+			"color": "yellow",
+			"value": "#ff0"
+		},
+		{
+			"color": "black",
+			"value": "#000"
+		}
+	])
+				</textarea><br><br><h2>Screenshot of the messages received on running above code</h2>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{url_for('static',filename='pip_screenshot.png')}}" height=370 width=200>
+			<br><br>
+			<h2>Add name to get the service name message</h2>
+			<textarea rows="5" cols="80" disabled="true">
+>>> import viablimp
+>>> logger = viablimp.token('BGSFH3HJ7I') 
+>>> logger.add_name('name_query_django') # This is Useful when multiple services use logging.
+>>> logger.message('Test-123')
+			</textarea>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{url_for('static',filename='pip_screenshot_service_name.png')}}" height="170">
+			<br><h3>This shows the service name for all logging messages. This is useful for multiple loggers at different services.</h3>
+      		</div>
+      		
+      	</div>
+</div>
+{% endblock %}
