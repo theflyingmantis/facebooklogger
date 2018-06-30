@@ -23,7 +23,7 @@ body {
   height:auto;
   position: relative; 
   overflow: hidden; 
-  width: 670px;
+  width: 630px;
 }
 
 .topNaviagationLink
@@ -63,23 +63,23 @@ background-image:url(tab.png);
 
 #mainPicture
 {
-width:670px;
-height:345px;
+width:630px;
+height:240px;
 background-color:#FFFFFF;
 }
 
 #mainPicture
 {
-width:670px;
-height:345px;
+width:630px;
+height:240px;
 background-color:#FFFFFF;
 }
 
 #mainPicture .picture
 {
 position:relative;
-width:650px;
-height:325px;
+width:610px;
+height:220px;
 top:10px;
 background-image:url(anoceanofsky.jpg);
 background-repeat:no-repeat;
@@ -106,9 +106,26 @@ color:#A9C8FA;
 font-family:"Adobe Garamond Pro Bold", Georgia, "Times New Roman", Times, serif;
 }
 
+.averagefont
+{
+font-size: 16pt;
+font-family: Arial;
+}
+.smallfont
+{
+font-size: 12pt;
+font-family: Times New Roman;
+}
+
+.bigfont
+{
+font-size: 20pt;
+font-family: Times New Roman;
+}
+
 .contentBox
 {
-width:670px;
+width:800px;
 height:auto;
 background-color:#FFFFFF;
 margin-top:10px;
@@ -117,7 +134,7 @@ margin-top:10px;
 .contentBox .innerBox
 {
 position:relative;
-width:650px;
+width:780px;
 height:auto;
 top:10px;
 margin-left:10px;
