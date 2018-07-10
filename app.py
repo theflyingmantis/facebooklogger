@@ -118,6 +118,7 @@ class Command:
       Models().add_sender_id_in_db(senderId)
     try:
       userId = Models().get_userId(senderId)
+      Message().send_website(senderId)
       Message().send_standard(senderId,userId)
     except Exception as e:
       Message().send_message(PAT,senderId, "Something Wrong happened!")
@@ -162,6 +163,9 @@ class Helper:
 
 
 class Message:
+  def send_website(self,senderId):
+    self.send_message(PAT, senderId, "Visit https://facebooklogger.herokuapp.com for any help.")
+
   def send_link_msg(self,senderId, userId):
     self.send_message(PAT, senderId, "You url is:\nhttps://facebooklogger.herokuapp.com/api/"+str(userId))
 
