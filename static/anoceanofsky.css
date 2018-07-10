@@ -63,25 +63,25 @@ background-image:url(tab.png);
 
 #mainPicture
 {
-width:630px;
-height:240px;
+width:481px;
+height:339px;
 background-color:#FFFFFF;
 }
 
 #mainPicture
 {
-width:630px;
-height:240px;
+width:481px;
+height:339px;
 background-color:#FFFFFF;
 }
 
 #mainPicture .picture
 {
 position:relative;
-width:610px;
-height:220px;
+width:461px;
+height:319px;
 top:10px;
-background-image:url(anoceanofsky.jpg);
+background-image:url(blimp.jpeg);
 background-repeat:no-repeat;
 margin-left:10px;
 }
