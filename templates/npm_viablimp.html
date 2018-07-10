@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="contentBox">
+        <div class="innerBox">
+            <div class="contentTitle"><p class="bigfont">Python package <strong>viablimp</strong></p></div>
+      		<div class="contentText"><br />
+      			<h2>Installation</h2>
+      			<p class="smallfont">Using pip</p>
+      			<textarea rows="1" cols="80" disabled="true">
+>>> npm install viablimp
+      			</textarea><br>
+      			<br>
+      			<h2>Usage</h2>
+      			<textarea rows="20" cols="80" disabled="true">
+let viablimp = require('viablimp');
+
+let log = new viablimp('BGSFH3HJ7I'); //Here BGSFH3HJ7I is the token received from chatbot
+let loggingData = [1,2,3,4]
+
+log.message(loggingData)
+  .then(data=>{
+	console.log(data);
+  })
+  .catch(error=>{
+	console.log(error);
+})
+// Sends the message to FB user whose token is 'BGSFH3HJ7I'. Visit https://m.me/viablimp to get your token.
+
+log.message('Test-123')
+log.message([
+		{
+			"color": "red",
+			"value": "#f00"
+		},
+		{
+			"color": "green",
+			"value": "#0f0"
+		},
+		{
+			"color": "blue",
+			"value": "#00f"
+		},
+		{
+			"color": "cyan",
+			"value": "#0ff"
+		},
+		{
+			"color": "magenta",
+			"value": "#f0f"
+		},
+		{
+			"color": "yellow",
+			"value": "#ff0"
+		},
+		{
+			"color": "black",
+			"value": "#000"
+		}
+	])
+				</textarea><br><br><h2>Screenshot of the messages received on running above code</h2>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{url_for('static',filename='pip_screenshot.png')}}" height=370 width=200>
+			<br><br>
+			<h2>Add name to get the service name message</h2>
+			<textarea rows="5" cols="80" disabled="true">
+let viablimp = require('viablimp');
+
+let log = new viablimp('BGSFH3HJ7I'); 
+log.add_name('name_query_django')	
+let loggingData = "Test-123"
+
+log.message(loggingData)
+  .then(data=>{
+	console.log(data);
+  })
+  .catch(error=>{
+	console.log(error);
+})
+			</textarea>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{url_for('static',filename='pip_screenshot_service_name.png')}}" height="170">
+			<br><h3>This shows the service name for all logging messages. This is useful for multiple loggers at different services.</h3>
+			<h2>Functions</h2>
+      			<ul class="smallfont">
+      			<li><code>let logs = new viablimp('TOKEN');</code></li>
+      			This returns a <u>viablimp class object</u>. The <strong>TOKEN</strong> should be obtained from facebook chatbot.
+      			<li><code>logs.message(loggingData)</code></li>
+      			This is a promise. When the promise is resolved, this returns the data as response status code. 200 for OK. 404 for not found. See response status codes for more info. This resolved promise data can be accessed by <strong><code>.then(data => {console.log(data)})</code></strong><br>
+      			If the token is incorrect or in case of no network, the promise gets rejected. That is it gets into <strong><code>.catch(error => {console.log(error)})</code></strong><br>
+      			Here loggingData can be anything to log. String, array, dictionary, etc.
+      			<li><code>logs.add_name('SERVICE_NAME')</code></li>
+      			Returns True. All log messages sent by calling from the viablimp object now will have the SERVICE_NAME as their heading as illustrated above.
+      			</ul>
+			<br><br><h2>Github Link: <a href="https://github.com/theflyingmantis/facebooklogger/tree/master/modules/npm/viablimp" target="_blank">Click Here</a></h2>
+      		</div>
+      		
+      	</div>
+</div>
+
+{% endblock %}

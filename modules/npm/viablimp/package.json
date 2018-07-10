@@ -1,0 +1,20 @@
+{
+  "name": "viablimp",
+  "version": "1.0.1",
+  "description": "logging messages by facebook bot to your account",
+  "main": "index.js",
+  "scripts": {
+    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\""
+  },
+  "keywords": [
+    "facebook",
+    "logger",
+    "log",
+    "message"
+  ],
+  "author": "Abhinav Rai <abhinav.rai.1996@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.87.0"
+  }
+}

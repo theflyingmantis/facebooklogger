@@ -13,18 +13,7 @@
       			<textarea rows="1" cols="80" disabled="true">
 >>> easy_install viablimp
       			</textarea><br><br>
-      			<h2>Functions</h2>
-      			<ul class="smallfont">
-      			<li><code>logs = viablimp.token('TOKEN')</code></li>
-      			This returns a <u>viablimp object</u>. The <strong>TOKEN</strong> should be obtained from facebook chatbot.
-      			<li><code>logs.message(MESSAGE)</code></li>
-      			This returns response status code. 200 for OK. 404 for not found. See response status codes for more info.<br>
-      			If the token is incorrect or in case of no network, it raises error.<br>
-      			Here MESSAGE can be anything to log. String, array, dictionary, etc.
-      			<li><code>logs.add_name('SERVICE_NAME')</code></li>
-      			Returns True. All log messages sent by calling from the viablimp object now will have the SERVICE_NAME as their heading as illustrated below.
-      			</ul>
-      			<br>
+      			
       			<h2>Usage</h2>
       			<textarea rows="20" cols="80" disabled="true">
 >>> import viablimp
@@ -72,8 +61,20 @@
 >>> logger.message('Test-123')
 			</textarea>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{url_for('static',filename='pip_screenshot_service_name.png')}}" height="170">
-			<br><h3>This shows the service name for all logging messages. This is useful for multiple loggers at different services.</h3>
-			<br><br><h2>Github Link: <a href="https://github.com/theflyingmantis/facebooklogger/tree/master/modules/pip/viablimp">Click Here</a></h2>
+			<br><h3>This shows the service name for all logging messages. This is useful for multiple loggers at different services.</h3><br>
+			<h2>Functions</h2>
+      			<ul class="smallfont">
+      			<li><code>logs = viablimp.token('TOKEN')</code></li>
+      			This returns a <u>viablimp object</u>. The <strong>TOKEN</strong> should be obtained from facebook chatbot.
+      			<li><code>logs.message(MESSAGE)</code></li>
+      			This returns response status code. 200 for OK. 404 for not found. See response status codes for more info.<br>
+      			If the token is incorrect or in case of no network, it raises error.<br>
+      			Here MESSAGE can be anything to log. String, array, dictionary, etc.
+      			<li><code>logs.add_name('SERVICE_NAME')</code></li>
+      			Returns True. All log messages sent by calling from the viablimp object now will have the SERVICE_NAME as their heading as illustrated above.
+      			</ul>
+      			<br>
+			<br><br><h2>Github Link: <a href="https://github.com/theflyingmantis/facebooklogger/tree/master/modules/pip/viablimp" target="_blank" >Click Here</a></h2>
       		</div>
       		
       	</div>

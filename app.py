@@ -103,6 +103,10 @@ def privacy_policy():
 def module(language):
   if language == "python":
     return render_template('pip_viablimp.html')
+  if language == "node":
+    return render_template('npm_viablimp.html')
+  else:
+    return render_template('404.html'), 404
 
 @app.errorhandler(404)
 def page_not_found(e):
