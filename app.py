@@ -43,6 +43,8 @@ def handle_messages():
   if msgType == "change_userId":
     return Command().change_userId(senderId)
   if msgType == "message":
+    if Helper().check_for_help_text(payload):
+      return Command().help(senderId)
     return Command().reply_to_message(senderId)
   return "ok"
 
@@ -139,6 +141,10 @@ class Command:
     Message().send_standard(senderId,userId)
     return "ok"
 
+  def help(self, senderId):
+    Message().send_website(senderId)
+    return "ok"
+
 
 class Helper:
   def get_message_type(self,payload):
@@ -152,6 +158,14 @@ class Helper:
       return "change_userId"
     else:
       return None
+
+  def check_for_help_text(self,payload):
+    data = json.loads(payload)
+    messageText = data["entry"][0]["messaging"][0]["message"]["text"].lower()
+    if messageText.find("help")!=-1:
+      return True
+    return False
+
 
   def get_sender_id(self,payload):
     data = json.loads(payload)
