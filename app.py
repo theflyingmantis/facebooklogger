@@ -161,9 +161,10 @@ class Helper:
 
   def check_for_help_text(self,payload):
     data = json.loads(payload)
-    messageText = data["entry"][0]["messaging"][0]["message"]["text"].lower()
-    if messageText.find("help")!=-1:
-      return True
+    if "text" in data["entry"][0]["messaging"][0]["message"]:
+      messageText = data["entry"][0]["messaging"][0]["message"]["text"].lower()
+      if messageText.find("help")!=-1:
+        return True
     return False
 
 
