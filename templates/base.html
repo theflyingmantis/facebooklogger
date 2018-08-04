@@ -5,10 +5,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="{{url_for('static',filename='blimp.ico')}}">
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='anoceanofsky.css')}}"/>
+<script src="{{url_for('static', filename='facebook_chat.js')}}"></script>
 <title>Blimp</title>
 </head>
 
-<body>
+<body><!-- Load Facebook SDK for JavaScript -->
+<div id="fb-root"></div>
+
+<!-- Your customer chat code -->
+<div class="fb-customerchat"
+  attribution=setup_tool
+  page_id="225036148294010"
+  theme_color="#ffc300"
+  logged_in_greeting="Hey there! Drop me a msg to get started! "
+  logged_out_greeting="Hey there! Drop me a msg to get started! ">
+</div>
+
     <div id="page">
         <div class="topNaviagationLink"><a href="/">Home</a></div>
         <div class="topNaviagationLink"><a href="/module/python">Python-PIP</a></div>
