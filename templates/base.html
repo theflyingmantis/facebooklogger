@@ -1,31 +1,37 @@
-<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
- --><html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <title>Blimp</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="{{url_for('static',filename='images/blimp.ico')}}">
-<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/facebook_chat.js')}}"></script>
 
-<!-- <script type="text/javascript" src="{{url_for('static', filename='js/scrolloverflow.min.js')}}"></script>
- --><!-- <script type="text/javascript" src="{{url_for('static', filename='js/fullpage.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/facebook_chat.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/scrolloverflow.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/fullpage.js')}}"></script>
+
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/fullpage.css')}}" />
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/viablimp_fullpage.css')}}"> -->
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/viablimp_fullpage.css')}}">
 <title>Blimp</title>
 </head>
 
 <body>
 <div id="fb-root"></div>
-
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <!-- Customer chat code -->
 <div class="fb-customerchat"
   attribution=setup_tool
   page_id="225036148294010"
+  theme_color="#3B5998"
   logged_in_greeting="Hey! Hit me up to get the webhook Url and token!"
-  logged_out_greeting="Hey! Hit me up to get the webhook Url and token!">
+  logged_out_greeting="Hey! Hit me up to get the webhook Url and token!"
+  greeting_dialog_display="show">
 </div>
-<h1>Test</h1>
-<!-- 
 
 <ul id="menu">
     <li data-menuanchor="home" class="active"><a href="#home">Home</a></li>
@@ -95,7 +101,7 @@
     
 </div>
 
-<!-- <script type="text/javascript">
+<script type="text/javascript">
         var myFullpage = new fullpage('#fullpage', {
         anchors: ['home', 'uses', 'lang', 'webhk'],
         sectionsColor: [ '#1BBC9B', '#1BBC9B','#1BBC9B', '#1BBC9B'],
@@ -107,11 +113,7 @@
         afterResponsive: function(isResponsive){
         }
     });
-</script> -->
-
-
-
- -->
+</script>
 
 </body>
 </html>
