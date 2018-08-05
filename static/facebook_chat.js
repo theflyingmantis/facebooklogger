@@ -1,4 +1,4 @@
-alert('yo');
+console.log('test');
 window.fbAsyncInit = function() {
   FB.init({
     appId            : '170251246934484',
