@@ -5,14 +5,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="{{url_for('static',filename='images/blimp.ico')}}">
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
-<script type="text/javascript" src="{{url_for('static', filename='js/scrolloverflow.min.js')}}"></script>
-<!-- <script type="text/javascript" src="{{url_for('static', filename='js/fullpage.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/facebook_chat.js')}}"></script>
+
+<!-- <script type="text/javascript" src="{{url_for('static', filename='js/scrolloverflow.min.js')}}"></script>
+ --><!-- <script type="text/javascript" src="{{url_for('static', filename='js/fullpage.js')}}"></script>
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/fullpage.css')}}" />
 <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/viablimp_fullpage.css')}}"> -->
 <title>Blimp</title>
 </head>
 
 <body>
+<div id="fb-root"></div>
+
+<!-- Customer chat code -->
+<div class="fb-customerchat"
+  attribution=setup_tool
+  page_id="225036148294010"
+  logged_in_greeting="Hey! Hit me up to get the webhook Url and token!"
+  logged_out_greeting="Hey! Hit me up to get the webhook Url and token!">
+</div>
 
 
 <ul id="menu">
@@ -97,18 +108,7 @@
     });
 </script> -->
 
-<script type="text/javascript" src="{{url_for('static', filename='js/facebook_chat.js')}}"></script>
 
-<div id="fb-root"></div>
-
-<!-- Customer chat code -->
-<div class="fb-customerchat"
-  attribution=setup_tool
-  page_id="225036148294010"
-  theme_color="#3B5998"
-  logged_in_greeting="Hey! Hit me up to get the webhook Url and token!"
-  logged_out_greeting="Hey! Hit me up to get the webhook Url and token!">
-</div>
 
 
 
