@@ -9,7 +9,7 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ["DATABASE_URL"]+"?sslmode=require"
 db = SQLAlchemy(app)
-
+WEBSITE_URL = str(os.environ["WEBSITE_URL"])
 PAT = os.environ["PAGE_ACCESS_TOKEN"]
 
 
@@ -179,10 +179,10 @@ class Helper:
 
 class Message:
   def send_website(self,senderId):
-    self.send_message(PAT, senderId, "Visit https://facebooklogger.herokuapp.com for any help.")
+    self.send_message(PAT, senderId, "Visit "+WEBSITE_URL+" for any help.")
 
   def send_link_msg(self,senderId, userId):
-    self.send_message(PAT, senderId, "You url is:\nhttps://facebooklogger.herokuapp.com/api/"+str(userId))
+    self.send_message(PAT, senderId, "You url is:\n"+WEBSITE_URL+"/api/"+str(userId))
 
   def send_id_msg(self,senderId, userId):
     self.send_message(PAT, senderId, "Unique Token is:\n"+str(userId))
