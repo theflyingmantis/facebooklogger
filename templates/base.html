@@ -3,45 +3,111 @@
 <head>
 <title>Blimp</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="shortcut icon" href="{{url_for('static',filename='blimp.ico')}}">
-<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='anoceanofsky.css')}}"/>
-<script src="{{url_for('static', filename='facebook_chat.js')}}"></script>
+<link rel="shortcut icon" href="{{url_for('static',filename='images/blimp.ico')}}">
+<script type="text/javascript" src="{{url_for('static', filename='js/facebook_chat.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/scrolloverflow.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/fullpage.js')}}"></script>
+
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/fullpage.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/viablimp_fullpage.css')}}">
 <title>Blimp</title>
 </head>
 
-<body><!-- Load Facebook SDK for JavaScript -->
+<body>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js#xfbml=1&version=v2.12&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 
-<!-- Your customer chat code -->
+<!-- Customer chat code -->
 <div class="fb-customerchat"
   attribution=setup_tool
   page_id="225036148294010"
-  theme_color="#ffc300"
-  logged_in_greeting="Hi! Drop me a msg. "
-  logged_out_greeting="Hi! Drop me a msg. ">
+  theme_color="#3B5998"
+  logged_in_greeting="Hey! Hit me up to get the webhook Url and token!"
+  logged_out_greeting="Hey! Hit me up to get the webhook Url and token!"
+  greeting_dialog_display="show">
 </div>
 
-    <div id="page">
-        <div class="topNaviagationLink"><a href="/">Home</a></div>
-        <div class="topNaviagationLink"><a href="/module/python">Python-PIP</a></div>
-        <div class="topNaviagationLink"><a href="/module/node">Node-NPM</a></div>
-        <div class="topNaviagationLink"><a href="/privacy_policy">Privacy Policy</a></div>
-	</div>
-    <div id="mainPicture">
-    	<div class="picture">
-        	<div id="headerTitle">Blimp</div>
+<ul id="menu">
+    <li data-menuanchor="home" class="active"><a href="#home">Home</a></li>
+    <li data-menuanchor="uses" class="active"><a href="#uses">Uses</a></li>
+    <li data-menuanchor="lang" class="active"><a href="#lang">Languages</a></li>
+    <li data-menuanchor="webhk" class="active"><a href="#webhk">Webhooks</a></li>
+
+</ul>
+<div id="fullpage">
+    <div class="section" id="section0">
+            <h1>Welcome to Blimp flight</h1>
+            <p>ViaBlimp is a productivity enhancer tool which connect your facebook messenger to your application by just messaging our bot.</p><br>
+            <p>You get a unique url on messaging the bot and any ping/hit on this url with data will send this data on your facebook account.</p>
+    </div>
+    <div class="section" id="section3">
+        <h1>Uses</h1>
+        <div class="slide" id="slide1">
+            <h1>Webhooks</h1>
+            <p>On messaging the bot, it gives you a unique webhook url which you can use<br> in places to add webhook for spiking. <br>When this webhook is hit, you get the pretty json response on your messenger account.</p>
+        </div>
+        <div class="slide" id="slide2">
+            <h1>Server Logging Spike</h1>
+            <p>Its really difficult for me to see the logs of deployed code to check<br> the values of objects and variables. Why not use the <strong>viablimp</strong> logging<br> modul to log the message along with sending it <br> to you on your messenger.Viablimp logging module is available<br> on PIP and NPM. Ruby gem is under construction!</p>
+        </div>
+        <div class="slide" id="slide3">
+            <h1>Running time consuming code!</h1>
+            <p>This tool is a blessing for people whose work involve running time consuming programs.<br>I use it quite a lot in scraping applications.<br>An error coming 2 hours after running<br> or when scraping is completed -> you get a straight message on your messenger. <br></p>
+        </div>
+        <div class="slide" id="slide4">
+            <h1>Make your own Pager duty!</h1>
+            <p>
+                Pager Duty on calls is great! But assume pager duty<br> for a crash coming on the team messenger group!<br> You can easily make one for your group<br> with the webhook url provided. Depending on the parameters set.
+            </p>
         </div>
     </div>
-    {% block content %}
-    {% endblock %}
-        <div id="footer"><a href="http://www.aszx.net">web development</a> by <a href="http://www.bryantsmith.com">bryant smith</a></div>
+    <div class="section" id="section2">
+        <br><h1>Usage with Languages</h1>
+        <div class="slide" id="slide1">
+            <a href="/module/python" target="_blank"><img src="{{url_for('static',filename='images/python_logo.png')}}" height=400 width=400></a>
+            <p>
+                <h2>PIP package to be imported directly in your python application. Click Python symbol above to see how to use the module.</h2>
+            </p>
+        </div>
+        <div class="slide" id="slide2">
+            <a href="/module/node" target="_blank"><img src="{{url_for('static',filename='images/npm_logo.png')}}" height=300 width=300></a>
+            <p>
+                <h2>NPM package to be imported directly in your python application. Click NPM symbol above to see how to use the module.</h2>
+            </p>
+        </div>
+    </div>
+    <div class="section" id="section1">
+        <br><h1>Using Webhooks</h1>
+        <div class="slide" id="slide1">
+            <p>On messaging the bot, You will get a unique url of the form <a href="#">http://viablimp.com/api/HADAGSU32H</a></p>
+            <p>If you send a GET/POST request to this url(Try with <a href="https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en">Restlet</a>), your facebook messenger will send you this data.</p>
+        </div>
+        <div class="slide" id="slide2">
+            <p>Blimp Screenshot on GET request with params=
+                {
+                 'ticketId':2013221,
+                 'userId':"BMS332"
+                }<br><br>
+                <img src="{{url_for('static', filename='images/blimp_chatbot_screenshot.png')}}" height="370" width="200">
+            </p>
+        </div>
+    </div>
+    
+</div>
+
+<script type="text/javascript">
+        var myFullpage = new fullpage('#fullpage', {
+        anchors: ['home', 'uses', 'lang', 'webhk'],
+        sectionsColor: [ '#1BBC9B', '#1BBC9B','#1BBC9B', '#1BBC9B'],
+        navigation: true,
+        navigationPosition: 'right',
+        navigationTooltips: ['First page', 'Second page', 'Third page', 'Fourth Page'],
+        responsiveWidth: 900,
+        scrollBar: true,
+        afterResponsive: function(isResponsive){
+        }
+    });
+</script>
 
 </body>
 </html>

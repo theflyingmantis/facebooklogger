@@ -1,0 +1,206 @@
+h1{
+	font-size: 5em;
+	font-family: arial,helvetica;
+}
+
+a:link {
+    color: #003366;
+}
+a:visited {
+    color: #0033cc;
+}
+/* Centered texts in each section
+* --------------------------------------- */
+.section{
+	text-align:center;
+}
+/* Backgrounds will cover all the section
+* --------------------------------------- */
+.section{
+	background-size: cover;
+}
+.slide{
+	background-size: cover;
+}
+/* Defining each section background and styles
+* --------------------------------------- */
+#section0{
+	background-image: url(../images/bg1.jpg);
+}
+#section0 h1{
+	transform: translateY(-100%);
+	color: black;
+}
+
+#section0 p{
+	top: 0%;
+	transform: translateY(0%);
+	position: relative;
+	color: #0E0133;
+	font-family: arial,helvetica;
+	font-size: 2em;
+}
+
+#section1{
+		background: -webkit-gradient(linear, top left, bottom left, from(#4bbfc3), to(#7baabe));
+		background: -webkit-linear-gradient(#4BBFC3, #7BAABE);
+		background: linear-gradient(#4BBFC3,#7BAABE);
+	}
+
+#section1 #slide1 p{
+	transform: translateY(-200%);
+	font-family: arial,helvetica;
+	font-size: 25px;
+}
+
+#section1 #slide2 p{
+	transform: translateY(-25%);
+	font-family: arial,helvetica;
+	font-size: 40px;
+}
+
+
+#section3{
+		background: -webkit-gradient(linear, top left, bottom left, from(#7baabe), to(#969ac6));
+		background: -webkit-linear-gradient(#7BAABE, #969AC6);
+		background: linear-gradient(#7BAABE,#969AC6);
+	}
+
+#section2 #slide1 p{
+	transform: translateY(-200%);
+	font-family: arial,helvetica;
+	font-size: 25px;
+	color: white;
+}
+
+#section2 h1{
+	font-family: arial,helvetica;
+	color: #BDDBD0;;
+}
+
+#section2 #slide1 h2{
+	transform: translateY(-200%);
+	font-family: arial,helvetica;
+	color: #BDDBD0;;
+}
+
+#section2 #slide2 h2{
+	transform: translateY(-25%);
+	font-family: arial,helvetica;
+	font-size: 25px;
+	color: #BDDBD0;;
+}
+
+#section2 #slide2 p{
+	transform: translateY(-25%);
+	font-family: arial,helvetica;
+	font-size: 25px;
+	color: white;
+}
+#section2 img{
+	transform: translateY(-40%);
+	font-family: arial,helvetica;
+	font-size: 25px;
+}
+
+
+#section2{
+	background-image: url(../images/bg2.jpg);
+
+}
+#section3 h1{
+	color: black;
+}
+#section3 #slide1 h1{
+	transform: translateY(-300%);
+	font-family: arial,helvetica;
+	color: #2e2e2e;
+}
+#section3 #slide1 p{
+	transform: translateY(-300%);
+	font-family: arial,helvetica;
+	font-size: 25px;
+	color: white;
+}
+
+#section3 #slide2 h1{
+	transform: translateY(-250%);
+	font-family: arial,helvetica;
+	color: #2e2e2e;
+}
+
+#section3 #slide2 p{
+	transform: translateY(-180%);
+	font-family: arial,helvetica;
+	font-size: 25px;
+	color: white;
+}
+
+#section3 #slide3 h1{
+	transform: translateY(-250%);
+	font-family: arial,helvetica;
+	color: #2e2e2e;
+}
+#section3 #slide3 p{
+	transform: translateY(-200%);
+	font-family: arial,helvetica;
+	font-size: 25px;
+	color: white;
+}
+
+#section3 #slide4 h1{
+	transform: translateY(-280%);
+	font-family: arial,helvetica;
+	color: #2e2e2e;
+}
+#section3 #slide4 p{
+	transform: translateY(-200%);
+	font-family: arial,helvetica;
+	font-size: 25px;
+	color: white;
+}
+
+
+
+#menu li {
+	display:inline-block;
+	margin: 10px;
+	color: #000;
+	background:#fff;
+	background: rgba(255,255,255, 0.5);
+	-webkit-border-radius: 10px;
+            border-radius: 10px;
+}
+#menu li.active{
+	background:#666;
+	background: rgba(0,0,0, 0.5);
+	color: #fff;
+}
+#menu li a{
+	text-decoration:none;
+	color: #000;
+}
+#menu li.active a:hover{
+	color: #000;
+}
+#menu li:hover{
+	background: rgba(255,255,255, 0.8);
+}
+#menu li a,
+#menu li.active a{
+	padding: 9px 18px;
+	display:block;
+}
+#menu li.active a{
+	color: #fff;
+}
+#menu{
+	position:fixed;
+	top:0;
+	left:0;
+	height: 40px;
+	z-index: 70;
+	width: 100%;
+	padding: 0;
+	margin:0;
+}

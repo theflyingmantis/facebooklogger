@@ -1,5 +1,24 @@
-{% extends 'base.html' %}
-{% block content %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Blimp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="{{url_for('static',filename='images/blimp.ico')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/anoceanofsky.css')}}"/>
+</head>
+<body>
+<div id="page">
+        <div class="topNaviagationLink"><a href="/">Home</a></div>
+        <div class="topNaviagationLink"><a href="/module/python">Python-PIP</a></div>
+        <div class="topNaviagationLink"><a href="/module/node">Node-NPM</a></div>
+        <div class="topNaviagationLink"><a href="/privacy_policy">Privacy Policy</a></div>
+	</div>
+    <div id="mainPicture">
+    	<div class="picture">
+        	<div id="headerTitle">Blimp</div>
+        </div>
+    </div>
+
 <div class="contentBox">
         <div class="innerBox">
             <div class="contentTitle"><p class="bigfont">NPM package <strong>viablimp</strong></p></div>
@@ -94,5 +113,5 @@ log.message(loggingData)
       		
       	</div>
 </div>
-
-{% endblock %}
+</body>
+</html>
