@@ -4,8 +4,8 @@
 <title>Blimp</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="{{url_for('static',filename='images/blimp.ico')}}">
-<script type="text/javascript" src="{{url_for('static', filename='js/facebook_chat.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"></script>
+<script type="text/javascript" src="{{url_for('static', filename='js/facebook_chat.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/scrolloverflow.min.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/fullpage.js')}}"></script>
 
@@ -15,17 +15,7 @@
 </head>
 
 <body>
-<div id="fb-root"></div>
 
-<!-- Customer chat code -->
-<div class="fb-customerchat"
-  attribution=setup_tool
-  page_id="225036148294010"
-  theme_color="#3B5998"
-  logged_in_greeting="Hey! Hit me up to get the webhook Url and token!"
-  logged_out_greeting="Hey! Hit me up to get the webhook Url and token!"
-  greeting_dialog_display="show">
-</div>
 
 <ul id="menu">
     <li data-menuanchor="home" class="active"><a href="#home">Home</a></li>
@@ -41,7 +31,7 @@
             <p>You get a unique url on messaging the bot and any ping/hit on this url with data will send this data on your facebook account.</p>
     </div>
     <div class="section" id="section3">
-        <h1>Uses</h1>
+        <br><h1>Uses</h1>
         <div class="slide" id="slide1">
             <h1>Webhooks</h1>
             <p>On messaging the bot, it gives you a unique webhook url which you can use<br> in places to add webhook for spiking. <br>When this webhook is hit, you get the pretty json response on your messenger account.</p>
@@ -108,6 +98,18 @@
         }
     });
 </script>
+
+<div id="fb-root"></div>
+
+<!-- Customer chat code -->
+<div class="fb-customerchat"
+  attribution=setup_tool
+  page_id="225036148294010"
+  theme_color="#3B5998"
+  logged_in_greeting="Hey! Hit me up to get the webhook Url and token!"
+  logged_out_greeting="Hey! Hit me up to get the webhook Url and token!"
+  greeting_dialog_display="show">
+</div>
 
 </body>
 </html>
