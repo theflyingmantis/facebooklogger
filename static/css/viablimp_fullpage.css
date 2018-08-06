@@ -93,7 +93,7 @@ a:visited {
 e;
 }
 #section2 img{
-	transform: translateY(-10%);
+	transform: translateY(-20%);
 	font-family: arial,helvetica;
 	font-size: 25px;
 }
@@ -119,37 +119,37 @@ e;
 }
 
 #section3 #slide2 h1{
-	/*transform: translateY(-200%);*/
+	transform: translateY(-200%);
 	font-family: arial,helvetica;
 	color: #2e2e2e;
 }
 
 #section3 #slide2 p{
-	/*transform: translateY(-140%);*/
+	transform: translateY(-140%);
 	font-family: arial,helvetica;
 	font-size: 25px;
 	color: white;
 }
 
 #section3 #slide3 h1{
-	/*transform: translateY(-800%);*/
+	transform: translateY(-80%);
 	font-family: arial,helvetica;
 	color: #2e2e2e;
 }
 #section3 #slide3 p{
-	/*transform: translateY(-100%);*/
+	transform: translateY(-110%);
 	font-family: arial,helvetica;
 	font-size: 25px;
 	color: white;
 }
 
 #section3 #slide4 h1{
-	/*transform: translateY(-800%);*/
+	transform: translateY(-90%);
 	font-family: arial,helvetica;
 	color: #2e2e2e;
 }
 #section3 #slide4 p{
-	/*transform: translateY(-100%);*/
+	transform: translateY(-110%);
 	font-family: arial,helvetica;
 	font-size: 25px;
 	color: white;
