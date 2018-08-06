@@ -1,4 +1,4 @@
-# facebooklogger #
+# facebooklogger or viablimp #
 
 
 Blimp is a chatbot. Blimp provides you a unique URL when you message the bot. This unique url when hit with any data (GET/POST request) messages you the data in json on your fb account. Imagine this to be a wormhole! Anything you do with the url, the message is sent by you on your phone messenger account. Also can be used as a testing API endpoint or as a webhook url. Ruby Gem for viablimp coming soon.
