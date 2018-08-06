@@ -79,7 +79,7 @@ a:visited {
 }
 
 #section2 #slide1 h2{
-	transform: translateY(-200%);
+	transform: translateY(-25%);
 	font-family: arial,helvetica;
 	color: #BDDBD0;;
 }
@@ -92,13 +92,13 @@ a:visited {
 }
 
 #section2 #slide2 p{
-	transform: translateY(-25%);
+	transform: translateY(0%);
 	font-family: arial,helvetica;
 	font-size: 25px;
 	color: white;
 }
 #section2 img{
-	transform: translateY(-40%);
+	transform: translateY(-10%);
 	font-family: arial,helvetica;
 	font-size: 25px;
 }
@@ -112,49 +112,49 @@ a:visited {
 	color: #0A2D39;
 }
 #section3 #slide1 h1{
-	transform: translateY(-300%);
+	transform: translateY(-200%);
 	font-family: arial,helvetica;
 	color: #2e2e2e;
 }
 #section3 #slide1 p{
-	transform: translateY(-300%);
+	transform: translateY(-170%);
 	font-family: arial,helvetica;
 	font-size: 25px;
 	color: white;
 }
 
 #section3 #slide2 h1{
-	transform: translateY(-250%);
+	transform: translateY(-200%);
 	font-family: arial,helvetica;
 	color: #2e2e2e;
 }
 
 #section3 #slide2 p{
-	transform: translateY(-180%);
+	transform: translateY(-170%);
 	font-family: arial,helvetica;
 	font-size: 25px;
 	color: white;
 }
 
 #section3 #slide3 h1{
-	transform: translateY(-250%);
+	transform: translateY(-200%);
 	font-family: arial,helvetica;
 	color: #2e2e2e;
 }
 #section3 #slide3 p{
-	transform: translateY(-200%);
+	transform: translateY(-170%);
 	font-family: arial,helvetica;
 	font-size: 25px;
 	color: white;
 }
 
 #section3 #slide4 h1{
-	transform: translateY(-250%);
+	transform: translateY(-200%);
 	font-family: arial,helvetica;
 	color: #2e2e2e;
 }
 #section3 #slide4 p{
-	transform: translateY(-200%);
+	transform: translateY(-170%);
 	font-family: arial,helvetica;
 	font-size: 25px;
 	color: white;
