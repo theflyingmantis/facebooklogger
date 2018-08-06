@@ -1,7 +1,7 @@
 # viablimp #
 
 This is the logging library. "Viablimp" delivers you the data you send through it to your facebook account. You can find more information about Blimp's Public API documentation at [https://facebooklogger.herokuapp.com/](https://facebooklogger.herokuapp.com/).
-If you have any problems or requests please contact [support](mailto:abhinav.rai.1996@gmail.com?subject=Viablimp Python library).
+If you have any problems or requests please contact [support](mailto:me@abhinavrai.com?subject=Viablimp Python library).
 
 
 ## License ##
