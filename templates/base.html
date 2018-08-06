@@ -5,6 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" href="{{url_for('static',filename='images/blimp.ico')}}">
 
+<script type="text/javascript" src="{{url_for('static',filename='js/jquery-3.3.1.min.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/facebook_chat.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/scrolloverflow.min.js')}}"></script>
 <script type="text/javascript" src="{{url_for('static', filename='js/fullpage.js')}}"></script>
@@ -38,13 +39,16 @@
     <li data-menuanchor="uses" class="active"><a href="#uses">Uses</a></li>
     <li data-menuanchor="lang" class="active"><a href="#lang">Languages</a></li>
     <li data-menuanchor="webhk" class="active"><a href="#webhk">Webhooks</a></li>
-
 </ul>
+<img src="{{url_for('static',filename='images/up_arrow.png')}}" class="up_arrow" height=100 width=80>
+<img src="{{url_for('static',filename='images/down_arrow.png')}}" class="down_arrow" height=100 width=80>
+
 <div id="fullpage">
     <div class="section" id="section0">
             <h1>Welcome to Blimp flight</h1>
             <p>ViaBlimp is a productivity enhancer tool which connect your facebook messenger to your application by just messaging our bot.</p><br>
             <p>You get a unique url on messaging the bot and any ping/hit on this url with data will send this data on your facebook account.</p>
+            <p>Start Blimping by chatting with this bot!</p>
     </div>
     <div class="section" id="section3">
         <br><h1>Uses</h1>
@@ -52,11 +56,11 @@
             <h1>Webhooks</h1>
             <p>On messaging the bot, it gives you a unique webhook url which you can use<br> in places to add webhook for spiking. <br>When this webhook is hit, you get the pretty json response on your messenger account.</p>
         </div>
-        <div class="slide" id="slide2">
+        <div class="slide" id="slide1">
             <h1>Server Logging Spike</h1>
             <p>Its really difficult for me to see the logs of deployed code to check<br> the values of objects and variables. Why not use the <strong>viablimp</strong> logging<br> modul to log the message along with sending it <br> to you on your messenger.Viablimp logging module is available<br> on PIP and NPM. Ruby gem is under construction!</p>
         </div>
-        <div class="slide" id="slide3">
+        <div class="slide" id="slide1">
             <h1>Running time consuming code!</h1>
             <p>This tool is a blessing for people whose work involve running time consuming programs. I use it quite a lot in scraping <br>applications. An error coming 2 hours after running or when scraping is <br>completed -> you get a straight message on your messenger.</p>
         </div>
@@ -82,7 +86,7 @@
         <br><h1>Using Webhooks</h1>
         <div class="slide" id="slide1">
             <p>On messaging the bot, You will get a unique url of the form <a href="#">http://viablimp.com/api/HADAGSU32H</a></p>
-            <p>If you send a GET/POST request to this url(Try with <a href="https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en">Restlet</a>), your facebook messenger will send you this data.</p>
+            <p>If you send a GET/POST request to this url(Try with <a href="https://chrome.google.com/webstore/detail/restlet-client-rest-api-t/aejoelaoggembcahagimdiliamlcdmfm?hl=en">Restlet</a> or Postman), your facebook messenger will send you this data.</p>
         </div>
         <div class="slide" id="slide2">
             <p>Blimp Screenshot on GET request with params=
@@ -101,14 +105,21 @@
         var myFullpage = new fullpage('#fullpage', {
         anchors: ['home', 'uses', 'lang', 'webhk'],
         sectionsColor: [ '#1BBC9B', '#1BBC9B','#1BBC9B', '#1BBC9B'],
-        navigation: true,
-        navigationPosition: 'right',
+        // navigation: true,
+        // navigationPosition: 'left',
         navigationTooltips: ['First page', 'Second page', 'Third page', 'Fourth Page'],
         responsiveWidth: 900,
         scrollBar: true,
         afterResponsive: function(isResponsive){
         }
     });
+        $('.up_arrow').click(function(){
+            fullpage_api.moveSectionUp();
+        });
+
+        $('.down_arrow').click(function(){
+            fullpage_api.moveSectionDown();
+        });
 </script>
 
 </body>
